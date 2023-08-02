@@ -509,13 +509,14 @@ function minutesToHourMinutesAndSeconds(minutes) {
 async function start() {
   //pegar as sugestões de filmes da api
   const results = data.results
+
   //pegar sugestões de filme randomicamente 3 filmes
-  const best3 = select3Videos(results)
-  //pegar as informações extras
-  
-  best3.forEach(async movie => {
+  const best3 = select3Videos(results).map(async movie => {
+    //pegar as informações extras
     const info = await getMoreInfo(movie)
-    const props ={
+    
+    //organizar os dados
+    const props = {
       id: info.id,
       title: info.title,
       stars: Number(info.vote_average).toFixed(1),
@@ -524,11 +525,11 @@ async function start() {
       year: info.release_date.slice(0, 4)
     }
 
-    console.log(props)
+    return createMovieLayout(props)
   })
 
-  //organizar os dados
-  //substituir o conteúdo dos movies no html
-}
+  const output = await Promise.all(best3)
 
-start()
+  //substituir o conteúdo dos movies no html
+  document.querySelector('.movies').innerHTML = output.join("")
+}
