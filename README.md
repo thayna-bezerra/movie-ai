@@ -9,8 +9,8 @@ Movie recommendation platform using an API: https://developer.themoviedb.org/ref
 Use the vscode Live Server to test this project on your computer </br>
 </h6>
 
-<h3>Tecnologias</h3>
-Esse projeto foi desenvolvido com as seguintes tecnologias:
+<h3>Technologies</h3>
+This project was developed with the technologies:
 
 - HTML
 - CSS
